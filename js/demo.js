@@ -18,7 +18,6 @@ const GAME_STATUS = {
 };
 
 let turnXO = TURN.CROSS;
-let turn = TURN.CROSS;
 let gameStatus = GAME_STATUS.PLAYING;
 let cellValues = new Array(9).fill('');
 
@@ -130,7 +129,7 @@ function handleCellClick() {
 
 // * reset games
 function resetGames() {
-  turn = TURN.CROSS;
+  turnXO = TURN.CROSS;
   gameStatus = GAME_STATUS.PLAYING;
   cellValues = cellValues.map(() => '');
 
@@ -142,9 +141,9 @@ function resetGames() {
   const statusGames = document.getElementById('gameStatus');
   statusGames.textContent = gameStatus;
 
-  const turnXO = document.getElementById('currentTurn');
-  turnXO.classList.remove(TURN.CROSS, TURN.CIRCLE);
-  turnXO.classList.add(turn);
+  const currentTurnElement = document.getElementById('currentTurn');
+  currentTurnElement.classList.remove(TURN.CROSS, TURN.CIRCLE);
+  currentTurnElement.classList.add(turnXO);
 
   const replayButton = document.getElementById('replayGame');
   replayButton.classList.remove('show');
@@ -157,7 +156,7 @@ function replayButton() {
 
   replayBtn.addEventListener('click', resetGames);
 }
-
+ 
 // todo Main
 (() => {
   handleCellClick();
